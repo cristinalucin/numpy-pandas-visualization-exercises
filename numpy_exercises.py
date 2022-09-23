@@ -6,10 +6,12 @@ a = np.array([4, 10, 12, 23, -2, -1, 0, 0, 0, -6, 3, -7])
 ### 1. How many negative numbers are there?
 
 np.negative(a)
+len(a[a<0])
 
 ### 2. How many positive numbers are there?
 
 np.positive(a)
+len(a[a>0])
 
 ### 3. How many even positive numbers are there?
 
@@ -19,9 +21,7 @@ np.sum(b % 2 ==0)
 
 ### 4. If you were to add 3 to each data point, how many positive numbers would there be?
 
-b = a + 3
-np.positive(b)
-print(np.sum(b>0))
+len(a[(a+3) >0])
 
 ### 5. If you squared each number, what would the new mean and standard deviation be?
 
@@ -98,3 +98,19 @@ ar = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 print(ar)
 evens_in_a = ar[ar % 2 == 0]
 print (f'Here are the evens: {evens_in_a}')
+
+## Setup 2: Consider what it would take to find the sum, min, max, average, sum, product, 
+# nd list of squares for this list of two lists.
+
+b = [
+    [3, 4, 5],
+    [6, 7, 8]
+]
+### Exercise 1 - refactor the following to use numpy. Use sum_of_b as the variable.
+## **Hint, you'll first need to make sure that the "b" variable is a numpy array**
+
+sum_of_b = 0
+for row in b:
+    sum_of_b += sum(row)
+    
+    
