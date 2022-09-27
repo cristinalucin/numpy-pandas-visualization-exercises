@@ -26,12 +26,13 @@ type(stud_df)
 
 
 #a. Create a column named passing_english that indicates whether each student has a passing grade in english.
-stud_df.english > 70
-stud_df['passing_english'] = df.english > 70
+stud_df.english >= 70
+stud_df['passing_english'] = stud_df.english >= 70
 stud_df
 
 #b. Sort the english grades by the passing_english column. How are duplicates handled?
 stud_df.sort_values(by='passing_english', ascending=False)
+# Duplicates are sorted by index
 
 
 #c. Sort the english grades first by passing_english and then by student name. All the students that are 
@@ -53,13 +54,13 @@ stud_df.assign(overall_grade = ((stud_df['math'] + stud_df['english'] + stud_df[
 mpg = data('mpg') # load the dataset and store it in a variable
 
 # How many rows and columns are there?
-mpg_df = data('mpg')
+mpg_df.shape
 
 # What are the data types of each column?
+mpg_df.info
 mpg_df.dtypes
 
 # Summarize the dataframe with .info and .describe
-mpg_df.info
 mpg_df.describe
 
 # Rename the cty column to city
@@ -67,25 +68,27 @@ mpg_df.rename(columns={'cty': 'city'}, inplace = True)
 
 # Rename the hwy column to highway
 mpg_df.rename(columns={'hwy': 'highway'}, inplace = True)
-mpg_df
 
 # Do any cars have better city mileage than highway mileage?
+mask = mpg_df.city > mpg_df.highway
+len(mpg_df[mask])
+
 # Create a column named mileage_difference this column should contain 
 # the difference between highway and city mileage for each car.
 mpg_df = mpg_df.assign(mileage_difference = (mpg_df['highway']-mpg_df['city'])) 
+mpg_df
 
 # Which car (or cars) has the highest mileage difference?
 mpg_df.sort_values(by='mileage_difference', ascending = False)
 mpg_df.nlargest(5, columns=['mileage_difference'])
 
 # Which compact class car has the lowest highway mileage? The best?
+#compact cars variable
 compact_cars_df = mpg_df[mpg_df['class'] == 'compact']
-# lowest
+# lowest highway mileage of compact
 compact_cars_df[compact_cars_df.highway == compact_cars_df.highway.min()]
-compact_cars_df
-#highest
+# highest highway mileage of compacy
 compact_cars_df[compact_cars_df.highway == compact_cars_df.highway.max()]
-compact_cars_df
 
 # Create a column named average_mileage that is the mean of the city and highway mileage.
 mpg_df["average_mileage"] = (mpg_df.highway + mpg_df.city) /2
@@ -93,6 +96,7 @@ mpg_df
 
 # Which dodge car has the best average mileage? The worst?
 dodge_df = mpg_df[mpg_df['manufacturer'] == 'dodge']
+dodge_df
 
 #best
 dodge_df[dodge_df.average_mileage == dodge_df.average_mileage.max()]
@@ -119,8 +123,11 @@ fastest_animal = mammals_df.speed.max()
 mammals_df.weight[mammals_df.speed == mammals_df.speed.max()]
 
 ## What is the overal percentage of specials?
+# getting all specials
+mammals_df.specials[mammals_df.specials == True].count()
 round(((mammals_df.specials[mammals_df.specials == True].count()) / (len(mammals_df.specials)) * 100), 2)
 
 ## How many animals are hoppers that are above the median speed? What percentage is this?
 hoppers_df = mammals_df[mammals_df.hoppers == True]
 hoppers_df[hoppers_df.speed > mammals_df.speed.median()]
+
