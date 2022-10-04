@@ -1,4 +1,4 @@
-## a = np.array([4, 10, 12, 23, -2, -1, 0, 0, 0, -6, 3, -7])
+## Using the following array plus import:
 
 import numpy as np
 a = np.array([4, 10, 12, 23, -2, -1, 0, 0, 0, -6, 3, -7])
@@ -113,4 +113,53 @@ sum_of_b = 0
 for row in b:
     sum_of_b += sum(row)
     
-    
+### Exercise 2 - refactor the following to use numpy.
+min_of_b = min(b[0]) if min(b[0]) <= min(b[1]) else min(b[1])  
+
+### Exercise 3 - refactor the following maximum calculation to find the answer with numpy.
+max_of_b = max(b[0]) if max(b[0]) >= max(b[1]) else max(b[1])
+
+### # Exercise 4 - refactor the following using numpy to find the mean of b
+mean_of_b = (sum(b[0]) + sum(b[1])) / (len(b[0]) + len(b[1]))
+
+### Exercise 5 - refactor the following to use numpy for calculating the product of all numbers multiplied together.
+product_of_b = 1
+for row in b:
+    for number in row:
+        product_of_b *= number
+        
+### Exercise 6 - refactor the following to use numpy to find the list of squares 
+squares_of_b = []
+for row in b:
+    for number in row:
+        squares_of_b.append(number**2)
+        
+### Exercise 7 - refactor using numpy to determine the odds_in_b
+odds_in_b = []
+for row in b:
+    for number in row:
+        if(number % 2 != 0):
+            odds_in_b.append(number)
+
+odds_in_b
+b2[b2 % 2 != 0]
+
+### Exercise 8 - refactor the following to use numpy to filter only the even numbers
+            
+evens_in_b = []
+for row in b:
+    for number in row:
+        if(number % 2 == 0):
+            evens_in_b.append(number)
+
+### Exercise 9 - print out the shape of the array b.
+b2.shape
+
+### Exercise 10 - transpose the array b.
+b2.transpose()
+
+### Exercise 11 - reshape the array b to be a single list of 6 numbers. (1 x 6)
+b2.reshape(1,6)
+
+### Exercise 12 - reshape the array b to be a list of 6 lists, each containing only 1 number (6 x 1)
+b2.reshape(6,1)
