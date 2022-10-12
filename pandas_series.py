@@ -113,38 +113,31 @@ print(random_series)
 
 # 1 Which letter occurs the most frequently in the letters Series?
 random_series[random_series.value_counts().max()]
-#or
-random_series.value_counts().head(1)
-#or
-random_series.value_counts().idxmax() #idx max gives us the index associated with 
 
 # 2 Which letter occurs the Least frequently?
 random_series[random_series.value_counts().min()]
-# or
-random_series.value_counts().nsmallest(n=1, keep='all')
 
 # 3 How many vowels are in the Series?
 vowels = list('aeiou')
 random_series[random_series.isin(vowels)].count()
-#or
-def is_vowel(some_word):
-    return some_word in ['a','e','i','o','u']
-random_series.str.lower().apply(is_vowel).sum()
-
-### ~ means apply the idea of 'not' to every instance in the series output by my vowel check 
 
 # 4 How many consonants are in the Series?
-#random_series.size - random_series[random_series.isin(vowels)].count()
-(~random_series.str.lower().apply(is_vowel)).sum()
+consonants = random_series.size - random_series[random_series.isin(vowels)].count()
+consonants
 
 # 5 Create a Series that has all of the same letters but uppercased.
 upper_letters = random_series.str.upper()
-print(upper_letters)
+upper_letters)
 
-# 6 Create a bar plot of the frequencies of the 6 most commonly occuring letters.
-random_series.value_counts().head(6).plot(kind='barh')
-plt.title('Top Six Letters')
-plt.show()
+# 6. Create a bar plot of the frequencies of the 6 most commonly occuring letters.
+common_letters = random_series.value_counts().head(6)
+common_letters
+
+# plotting the dataframe
+common_letters.plot.bar()
+plt.xticks(rotation = 0)
+plt.xlabel("Letters")
+plt.ylabel("Frequency of Letters")
 
 # Use pandas to create a Series named numbers from the following list:
 numbers = pd.Series(['$796,459.41', '$278.60', '$482,571.67', '$4,503,915.98', '$2,121,418.3', '$1,260,813.3', '$87,231.01', '$1,509,175.45', '$4,138,548.00', '$2,848,913.80', '$594,715.39', '$4,789,988.17', '$4,513,644.5', '$3,191,059.97', '$1,758,712.24', '$4,338,283.54', '$4,738,303.38', '$2,791,759.67', '$769,681.94', '$452,650.23'])
